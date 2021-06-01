@@ -1,0 +1,65 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <form #incidenciaForm="ngForm" (ngSubmit)="addIncidencia(incidenciaForm)">
+
+                    <input type="hidden" name="_id" [(ngModel)]="incidenciaService.selectedIncidencia._id">
+
+                    <div class="form-group">
+                        <input type="text" name="nombre" class="form-control" placeholder="Ingresa tu nombre"
+                            [(ngModel)]="incidenciaService.selectedIncidencia.nombre">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="admi" class="form-control" placeholder="Administracion"
+                            [(ngModel)]="incidenciaService.selectedIncidencia.admi">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="problem" class="form-control" placeholder="Problema"
+                            [(ngModel)]="incidenciaService.selectedIncidencia.problem">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="descri" class="form-control" placeholder="Descripcion"
+                            [(ngModel)]="incidenciaService.selectedIncidencia.descri">
+                    </div>
+
+                    <button class="btn btn-primary mr-2" (click)="resetForm(incidenciaForm)">
+                        Clean
+                    </button>
+                    <button class="btn btn-secondary">
+                        Save
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Administracion</th>
+                    <th>Problema</th>
+                    <th>Descripcion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let incidencia of incidenciaService.incidencias">
+                    <td>{{incidencia.nombre}}</td>
+                    <td>{{incidencia.admi}}</td>
+                    <td>{{incidencia.problem}}</td>
+                    <td>{{incidencia.descri}}</td>
+                    <td>
+                        <button class="btn btn-secondary btn-sm" (click)="editIncidencia(incidencia)">
+                            <i class="material-icons">edit</i>
+                        </button>
+                        <button class="btn btn-danger btn-sm" (click)="deleteIncidencia(incidencia._id!)">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
